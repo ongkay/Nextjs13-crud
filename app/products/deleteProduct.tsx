@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Product = {
   id: number;
@@ -10,6 +10,7 @@ type Product = {
 };
 
 export default function DeleteProduct(product: Product) {
+  console.log(product);
   const [modal, setModal] = useState(false);
   const [isMutating, setIsMutating] = useState(false);
 
@@ -19,7 +20,7 @@ export default function DeleteProduct(product: Product) {
     setIsMutating(true);
 
     await fetch(`http://localhost:5000/products/${productId}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
 
     setIsMutating(false);
@@ -47,7 +48,7 @@ export default function DeleteProduct(product: Product) {
 
       <div className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">
+          <h3 className="text-lg font-bold">
             Are sure to delete {product.title} ?
           </h3>
           <div className="modal-action">
