@@ -1,36 +1,36 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 type Product = {
-  id: number;
-  title: string;
-  price: number;
-};
+  id: number
+  title: string
+  price: number
+}
 
 export default function DeleteProduct(product: Product) {
-  console.log(product);
-  const [modal, setModal] = useState(false);
-  const [isMutating, setIsMutating] = useState(false);
+  console.log(product)
+  const [modal, setModal] = useState(false)
+  const [isMutating, setIsMutating] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   async function handleDelete(productId: number) {
-    setIsMutating(true);
+    setIsMutating(true)
 
     await fetch(`http://localhost:5000/products/${productId}`, {
       method: 'DELETE',
-    });
+    })
 
-    setIsMutating(false);
+    setIsMutating(false)
 
-    router.refresh();
-    setModal(false);
+    router.refresh()
+    setModal(false)
   }
 
   function handleChange() {
-    setModal(!modal);
+    setModal(!modal)
   }
 
   return (
@@ -48,9 +48,7 @@ export default function DeleteProduct(product: Product) {
 
       <div className="modal">
         <div className="modal-box">
-          <h3 className="text-lg font-bold">
-            Are sure to delete {product.title} ?
-          </h3>
+          <h3 className="text-lg font-bold">Are sure to delete {product.title} ?</h3>
           <div className="modal-action">
             <button type="button" className="btn" onClick={handleChange}>
               Close
@@ -72,5 +70,5 @@ export default function DeleteProduct(product: Product) {
         </div>
       </div>
     </div>
-  );
+  )
 }
